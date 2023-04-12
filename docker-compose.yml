@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  shopee-notify:
+    environment:
+      - APP_CRONTAB=* * * * *
+      - LINE_CHANNEL_TOKEN=
+      - SHOPEE_SHOP_ID=40886114
+      - SHOPEE_ITEM_ID=15306119549
+      - SHOPEE_MODEL_ID=137378949277
+    image: 'shopee-notify:latest'
