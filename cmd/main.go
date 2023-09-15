@@ -20,6 +20,7 @@ type Config struct {
 	ShopeeShopId     string `env:"SHOPEE_SHOP_ID,required"`
 	ShopeeItemId     string `env:"SHOPEE_ITEM_ID,required"`
 	ShopeeModelId    int64  `env:"SHOPEE_MODEL_ID,required"`
+	UserAgent        string `env:"USER_AGENT"`
 }
 
 func main() {
@@ -36,7 +37,7 @@ func main() {
 		log.Fatalf("unable to parse ennvironment variables: %e", err)
 	}
 
-	caller := shopee.New(cfg.ShopeeShopId, cfg.ShopeeItemId, cfg.ShopeeModelId)
+	caller := shopee.New(cfg.ShopeeShopId, cfg.ShopeeItemId, cfg.ShopeeModelId, shopee.WithUserAgent(cfg.UserAgent))
 	notifier := notify.New(cfg.LineChanneltoken)
 	handler := handler.New(caller, notifier)
 

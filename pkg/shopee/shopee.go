@@ -17,11 +17,10 @@ type Client struct {
 
 func New(shopID, itemID string, modelID int64, opts ...Option) *Client {
 	c := &Client{
-		ShopID:    shopID,
-		ItemID:    itemID,
-		ModelID:   modelID,
-		client:    http.DefaultClient,
-		userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
+		ShopID:  shopID,
+		ItemID:  itemID,
+		ModelID: modelID,
+		client:  http.DefaultClient,
 	}
 	for _, opt := range opts {
 		opt(c)
@@ -34,7 +33,11 @@ type Option func(*Client)
 // WithUserAgent when need to change the user agent
 func WithUserAgent(userAgent string) Option {
 	return func(c *Client) {
-		c.userAgent = userAgent
+		c.userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+		if userAgent != "" {
+			c.userAgent = userAgent
+		}
+
 	}
 }
 
